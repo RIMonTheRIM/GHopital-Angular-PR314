@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+<div class="tableWrapper">
+  <h2>Liste des utilisateurs</h2>
+  <table class="mainTable">
+    <tr>
+      <th>ID</th>
+      <th>Nom d'Utilisateur</th>
+      <th>Mot de passe</th>
+      <th>Role</th>
+      <th *ngIf="this.authService.connectedRole === 'admin'">Actions</th>
+    </tr>
+    @for (u of users; track u){
+      <tr>
+        <td>{{u.id}}</td>
+        <td>{{u.login}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.role}}</td>
+        <td *ngIf="this.authService.connectedRole === 'admin' && u.role !== 'admin'">
+          <button class="btn btn-info" (click)="editRole(u)">Modifier</button>
+          <button *ngIf="this.authService.connectedRole === 'admin'" class="btn btn-danger" (click)="deleteUser(u.id)">Delete</button>
+        </td>
+        <td *ngIf="u.role === 'admin'">Administrateur</td>
+      </tr>
+    }
+  </table>
+</div>

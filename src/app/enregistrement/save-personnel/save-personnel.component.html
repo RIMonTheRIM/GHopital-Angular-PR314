@@ -1,0 +1,40 @@
+<div class="formWrapper">
+  <h2 class="titleForm" >Ajout Personnel</h2>
+  <form class="form" [formGroup]="formGroup" (submit)="personnelSave()"  >
+
+
+    <label for="nom">Nom</label>
+    <input class="form-control" type="text" id="nom" name="nom" placeholder="Entrez le nom" formControlName="nom" >
+    @if (isValid('nom')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="prenom">Prénom</label>
+    <input class="form-control" type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" formControlName="prenom" >
+    @if (isValid('prenom')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+    <label for="tel">Téléphone</label>
+    <input class="form-control" type="text" id="tel" name="tel" placeholder="Entrez le numéro de téléphone" formControlName="tel" >
+    @if (isValid('tel')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="email">Email</label>
+    <input class="form-control" type="text" id="email" name="email" placeholder="Entrez l'email" formControlName="email" >
+    @if (isValid('email')){
+      @if(formGroup.get('email')?.getError('email')){
+        <small class="text-danger">Entrez un email valide</small><br>
+      } @else {
+        <small class="text-danger">ce champ est obligatoire</small><br>
+      }
+    }
+    <label  *ngIf="this.usersService.temporaryUser.role === 'medecin'" for="specialite">Spécialité</label>
+    <input *ngIf="this.usersService.temporaryUser.role === 'medecin'" class="form-control" type="text" id="specialite" name="specialite" placeholder="Entrez la spécialité" value="specialite" formControlName="specialite" >
+    @if (formGroup.get('role')?.value === 'medecin' && isValid('specialite')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+    <br>
+    <button type="submit" class="btn btn-primary my-3" [disabled]="formGroup.invalid">Enregistrer</button>
+  </form>
+</div>

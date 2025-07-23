@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+<div class="formWrapper">
+  <h2 class="titleForm">Modification Utilisateurs</h2>
+  <form class="form"  [formGroup]="formGroup" (submit)="userEdit()"  >
+
+
+    <label for="login">Nom d'utilisateur</label>
+    <input class="form-control" type="text" id="login" name="login" placeholder="Entrez le nom d'utilisateur" formControlName="login" value="{{this.sourceUser.login}}" >
+    @if (isValid('login')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="password">Mot de passe</label>
+    <input class="form-control" type="password" id="password" name="password" placeholder="Entrez le mot de passe" formControlName="password" value="{{this.sourceUser.password}}" >
+    @if (isValid('password')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="role">Role</label>
+    <input class="form-control" name="role" id="role" readonly  value="{{this.sourceUser.role}}">
+    @if (isValid('role')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+    <br><button type="submit" class="btn btn-primary my-3" [disabled]="formGroup.invalid">Modifier</button>
+  </form>
+</div>

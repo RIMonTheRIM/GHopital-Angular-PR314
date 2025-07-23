@@ -1,0 +1,38 @@
+.tableWrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0.5em;
+  color: #3674B5;
+}
+.mainTable{
+  border-radius: 1em;
+  border-collapse: collapse ;
+  border: 1px black solid;
+  background-color: green;
+  overflow: hidden;
+  width: 70vw;
+  color: black;
+}
+th, tr, td{
+  border-collapse: collapse ;
+  border-block: 1px black solid;
+}
+td, th{
+  padding: 0.5em;
+  text-align: center;
+}
+th{
+  background-color:#3674B5 ;
+  color: #FADA7A;
+}
+td{
+  background-color:#F5F0CD;
+}
+.btn{
+  margin-right: 0.5em;
+}
+.btn-info{
+  background-color:#3674B5 ;
+  color: #FADA7A;
+}

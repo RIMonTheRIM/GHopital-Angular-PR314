@@ -1,0 +1,66 @@
+<app-nav></app-nav>
+<div class="formWrapper">
+  <h2 class="titleForm">Modification du patient</h2>
+  <form class="form" [formGroup]="formGroup" (submit)="patientEdit()"  >
+
+
+    <label for="nom">Nom</label>
+    <input class="form-control" type="text" id="nom" name="nom" placeholder="Entrez le prénom" formControlName="nom" value="{{this.sourcePatient.nom}}">
+    @if (isValid('nom')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="prenom">Prénom</label>
+    <input class="form-control" type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" formControlName="prenom" value="{{this.sourcePatient.prenom}}">
+    @if (isValid('prenom')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="date_naissance">Date de naissance</label>
+    <input class="form-control" type="date" id="date_naissance" name="date_naissance" placeholder="Entrez la date de naissance" formControlName="date_naissance" value="{{this.sourcePatient.date_naissance}}">
+    @if (isValid('date_naissance')){
+      @if(formGroup.get("date_naissance")?.hasError("required")){
+        <small class="text-danger" >ce champ est obligatoire</small><br>
+      }
+    }
+
+    <label for="sexe">Sexe</label>
+    <select class="form-control" formControlName="sexe" name="sexe" id="sexe" value="{{this.sourcePatient.sexe}}">
+      <option value="" disabled selected>Selectionner le sexe</option>
+      <option value="M">Masculin</option>
+      <option value="F">Feminin</option>
+      <option value="Autre">Autre</option>
+    </select>
+    @if (isValid('sexe')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="adresse">Adresse</label>
+    <input class="form-control" type="text" id="adresse" name="adresse" placeholder="Entrez l'adresse" formControlName="adresse" value="{{this.sourcePatient.nom}}">
+    @if (isValid('adresse')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="tel">Téléphone</label>
+    <input class="form-control" type="text" id="tel" name="tel" placeholder="Entrez le numéro de téléphone" formControlName="tel" value="{{this.sourcePatient.nom}}">
+    @if (isValid('tel')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="email">Email</label>
+    <input class="form-control" type="text" id="email" name="email" placeholder="Entrez l'email" formControlName="email" value="{{this.sourcePatient.nom}}">
+    @if (isValid('email')){
+      @if(formGroup.get('email')?.getError('email')){
+        <small class="text-danger" >Entrez un email valide</small>
+      } @else {
+        <small class="text-danger" >ce champ est obligatoire</small>
+      }
+    }
+    <label for="num_secu_sociale">Numéro de sécurité sociale</label>
+    <input class="form-control" type="number" id="num_secu_sociale" name="num_secu_sociale" placeholder="Entrez le numéro de téléphone" formControlName="num_secu_sociale" value="{{this.sourcePatient.nom}}">
+    @if (isValid('num_secu_sociale')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+    <br><button type="submit" class="btn btn-primary my-3" [disabled]="formGroup.invalid">Modifier</button>
+  </form>
+</div>

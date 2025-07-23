@@ -1,0 +1,35 @@
+<app-nav></app-nav>
+<div class="formWrapper">
+  <h2 class="titleForm" >Ajout Utilisateurs</h2>
+  <form class="form" [formGroup]="formGroup" (submit)="userSave()"  >
+
+
+
+    <label for="login">Nom d'utilisateur</label>
+    <input class="form-control" type="text" id="login" name="login" placeholder="Entrez le nom d'utilisateur" formControlName="login" >
+    @if (isValid('login')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+    <label for="password">Mot de passe</label>
+    <input class="form-control" type="password" id="password" name="password" placeholder="Entrez le mot de passe" formControlName="password" >
+    @if (isValid('password')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+
+
+
+    <label for="role">Role</label>
+    <select class="form-control" formControlName="role" name="role" id="role">
+      <option value="" disabled selected>Selectionnez le rôle</option>
+      <option value="patient" *ngIf="this.authService.connectedRole === 'admin' || this.authService.connectedRole === 'secretaire'">Patient</option>
+      <option value="medecin" *ngIf="this.authService.connectedRole === 'admin'">Medecin</option>
+      <option value="secretaire" *ngIf="this.authService.connectedRole === 'admin'">Secretaire</option>
+    </select>
+    @if (isValid('role')){
+      <small class="text-danger" >ce champ est obligatoire</small><br>
+    }
+    <br><button type="submit" class="btn btn-primary my-3" [disabled]="formGroup.invalid">Enregistrer</button>
+  </form>
+</div>
+<router-outlet></router-outlet>

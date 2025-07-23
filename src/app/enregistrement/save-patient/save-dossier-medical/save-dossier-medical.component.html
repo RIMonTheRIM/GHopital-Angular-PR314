@@ -1,0 +1,64 @@
+<div class="formWrapper">
+  <h2 class="titleForm" >Ajout Dossier Médical</h2>
+  <form class="form" [formGroup]="formGroup" (submit)="dossierSave()"  >
+
+
+    <h3>Antécédents médicaux <button class="btn btn-info"  type="button" (click)="addAnteMedic()">+</button>  </h3>
+    <div formArrayName="ante_medics">
+      @for(a of ante_medics.controls; let i = $index; track a ){
+        <div class="" [formGroupName]="i">
+          <label for="ante_medic{{i+1}}">Antécédent {{ i + 1 }}:</label>
+          <div class="dossierItemWrapper">
+            <input class="form-control"  type="text" id="ante_medic{{i+1}}" name="ante_medic{{i+1}}" placeholder="Entrez l'antécédent médical" formControlName="value" />
+            <button type="button" class="btn btn-danger" (click)="removeAnteMedic(i)">Remove</button>
+          </div>
+        </div>
+      }
+    </div>
+
+
+    <h3>Antécédents Familiaux <button class="btn btn-info"  type="button" (click)="addAnteFamille()">+</button></h3>
+    <div formArrayName="ante_familles">
+      @for(a of ante_familles.controls; let i = $index; track a ){
+        <div [formGroupName]="i">
+          <label for="ante_famille{{i+1}}">Antécédent {{ i + 1 }}:</label>
+          <div class="dossierItemWrapper">
+            <input class="form-control"  type="text" id="ante_famille{{i+1}}" name="ante_famille{{i+1}}" placeholder="Entrez l'antécédent famillial" formControlName="value" />
+            <button type="button" class="btn btn-danger"  (click)="removeAnteFamille(i)">Remove</button>
+          </div>
+        </div>
+      }
+    </div>
+
+
+    <h3>Allergies <button class="btn btn-info" type="button" (click)="addAllergie()">+</button></h3>
+    <div formArrayName="allergies">
+      @for (a of allergies.controls; let i = $index; track a){
+        <div class="" [formGroupName]="i">
+          <label for="allergie{{i+1}}">Antécédent {{ i + 1 }}:</label>
+          <div class="dossierItemWrapper">
+            <input class="form-control"  type="text" id="allergie{{i+1}}" name="allergie{{i+1}}" placeholder="Entrez l'allergie" formControlName="value" />
+            <button type="button" class="btn btn-danger"  (click)="removeAllergie(i)">Remove</button>
+          </div>
+        </div>
+      }
+    </div>
+
+
+    <h3>Traitements <button class="btn btn-info"  type="button" (click)="addTraitement()">+</button></h3>
+    <div formArrayName="traitements">
+      @for (t of traitements.controls; let i = $index; track t){
+        <div class="" [formGroupName]="i">
+          <label for="traitement{{i+1}}">Antécédent {{ i + 1 }}:</label>
+          <div class="dossierItemWrapper">
+            <input class="form-control"  type="text" id="traitement{{i+1}}" name="traitement{{i+1}}" placeholder="Entrez le traitement" formControlName="value" />
+            <button type="button" class="btn btn-danger"  (click)="removeTraitement(i)">Remove</button>
+          </div>
+        </div>
+      }
+    </div>
+
+
+    <br><button type="submit" class="btn btn-primary my-3" [disabled]="formGroup.invalid">Enregistrer</button>
+  </form>
+</div>

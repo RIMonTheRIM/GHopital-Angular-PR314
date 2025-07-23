@@ -1,0 +1,39 @@
+<app-nav></app-nav>
+<div class="tableWrapper">
+    <h2>Liste des patients</h2>
+  <table class="mainTable">
+    <tr>
+      <th>ID</th>
+      <th>ID d'Utilisateur</th>
+      <th>Nom & Prénom</th>
+      <th>Date de naissance</th>
+      <th>Sexe</th>
+      <th>Adresse</th>
+      <th>Numéro de Sécurité Sociale</th>
+      <th>Telephone</th>
+      <th>Email</th>
+      <th>Dossier Médical</th>
+      <th *ngIf="this.authService.connectedRole === 'admin' || this.authService.connectedRole === 'secretaire' ">Actions</th>
+    </tr>
+    @for (p of patients; track p){
+      <tr>
+        <td>{{p.id}}</td>
+        <td>{{p.user_id}}</td>
+        <td>{{p.prenom}}</td>
+        <td>{{p.date_naissance}}</td>
+        <td>{{p.sexe}}</td>
+        <td>{{p.adresse}}</td>
+        <td>{{p.num_secu_sociale}}</td>
+        <td>{{p.tel}}</td>
+        <td>{{p.email}}</td>
+        <td><button (click)="navigateToDossierMedical(p.id)" class="btn btn-info">Dossier Médical</button></td>
+        <td *ngIf="this.authService.connectedRole === 'admin' || this.authService.connectedRole === 'secretaire' ">
+          <div  style="display: flex; gap: 4px;">
+            <button class="btn btn-info" (click)="editPatient(p)">Modifier</button>
+            <button *ngIf="this.authService.connectedRole === 'admin' " class="btn btn-danger" (click)="deletePatientUserById(p.user_id)">Supprimer</button>
+          </div>
+        </td>
+      </tr>
+    }
+  </table>
+</div>

@@ -1,0 +1,31 @@
+<div class="pageWrapper">
+  <div class="leftWrapper">
+    <div class="heroLoginWrapper">
+      <div class="heroLogin">
+        <div class="start">VOTRE</div>
+        <div class="end">SANTÉ.</div>
+        <div class="start">NOTRE</div>
+        <div class="end">DEVOIR.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="rightWrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="connexion()" >
+      <h2>Connexion</h2>
+      <p>Entrez votre identifiant et mot de passe!</p>
+
+      <div class="inputWrapper">
+        <label for="login">Identifiant</label>
+        <input class="form-control" type="text" name="login" id="login" formControlName="login"/>
+      </div>
+
+      <div class="inputWrapper">
+        <label for="password">Mot de passe</label>
+        <input class="form-control" type="password" name="password" id="password" formControlName="password"/>
+      </div>
+      <br>
+      <button id="test" class="btn btn-primary mb-1 mt-1" type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+    </form>
+  </div>
+</div>

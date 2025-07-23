@@ -1,0 +1,31 @@
+<app-nav></app-nav>
+<div class="tableWrapper">
+  <h2>Liste des médecins</h2>
+  <table class="mainTable">
+    <tr>
+      <th>ID</th>
+      <th>ID utilisateur</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Spécialité</th>
+      <th>Telephone</th>
+      <th>Email</th>
+      <th *ngIf="this.authService.connectedRole === 'admin' || this.authService.connectedRole ==='secretaire' ">Actions</th>
+    </tr>
+    @for (m of medecins; track m){
+      <tr>
+        <td>{{m.id}}</td>
+        <td>{{m.user_id}}</td>
+        <td>{{m.nom}}</td>
+        <td>{{m.prenom}}</td>
+        <td>{{m.specialite}}</td>
+        <td>{{m.tel}}</td>
+        <td>{{m.email}}</td>
+        <td *ngIf="this.authService.connectedRole === 'admin' || this.authService.connectedRole ==='secretaire' ">
+          <button  class="btn btn-info" (click)="editMedecin(m)">Modifier</button>
+          <button *ngIf="this.authService.connectedRole === 'admin'" class="btn btn-danger" (click)="deleteMedecinUserById(m.user_id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </table>
+</div>

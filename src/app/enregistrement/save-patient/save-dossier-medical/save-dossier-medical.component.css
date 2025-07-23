@@ -1,0 +1,37 @@
+.formWrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form{
+  padding: 2em ;
+  background-color: #F5F0CD;
+  margin-inline: 0.5em;
+  width: 50%;
+}
+.titleForm{
+  margin: 0.5em 0 0;
+  padding: 0.5em;
+  width: 50%;
+  background-color: #3674B5;
+  color: #FADA7A;
+}
+h3{
+  margin-block: 0.5em;
+}
+.dossierItemWrapper{
+  display: flex;
+}
+.dossierItemWrapper button{
+  margin-inline: 0.3em;
+}
+.btn-primary{
+  background-color: #3674B5;
+  color: #FADA7A;
+}
+.btn-info{
+  text-align: center;
+}
